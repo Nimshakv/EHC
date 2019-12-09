@@ -1,0 +1,41 @@
+{% extends 'camp/base.html' %}
+{% block content %}
+{% if user != 'staff' and user != 'parent' %}
+    <div class="user_type_select">
+        <button type="button" class="btn btn-dark lg_user_select" value="parent">I'm a parent</button>
+        <button type="button" class="btn btn-dark lg_user_select" value="staff">I'm a staff</button>
+    </div>
+{% endif %}
+
+    <div class="tabcontent" style="display:block;">
+        <br>
+            <div id="{{ id }}">
+            <form method="post" class="styled">
+                  {% csrf_token %}
+
+                <label>
+                    <p class="label-txt">Username</p>
+                    <input type="text" class="input" name="username">
+                    <div class="line-box">
+                      <div class="line"></div>
+                    </div>
+                </label><br>
+
+                <label>
+                    <p class="label-txt">Password</p>
+                    <input type="password" class="input" name="password">
+                    <div class="line-box">
+                      <div class="line"></div>
+                    </div>
+                </label><br>
+                <input type="hidden" id="lg_user_type" name="user_type" value="{{ user|default_if_none:'' }}">
+                <input type="submit" name="" value="Login">
+                <a href="{% url 'camp:reset' %}">Forgot Password</a>
+            </form>
+                <a href="https://play.google.com/store/apps/details?id=com.esmartvision.torathemirates" title="Download Mobile App" target="_blank" style="color:black !important;">
+                    Download App <i class="fab fa-google-play"></i>
+                </a>
+            </div>
+
+    </div>
+{% endblock %}

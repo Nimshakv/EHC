@@ -1,0 +1,32 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+<div class="topMargin">
+<h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Your Children</h3>
+<form method="post" id="st_det">
+    {% csrf_token %}
+<div class="list-group left-text students">
+  {% for child in children %}
+        <div>
+            <span class="right sp-child">
+                <button type="submit" name="edit"><i class="fa fa-edit"></i></button>
+                <button type="submit" name="delete"><i class="fa fa-trash"></i></button>
+            </span>
+            <a href="/student?id={{ child.id }}">
+                    <p class="list-group-item list-group-item-action list-group-item-secondary p-width">{{ child.name }}</p>
+            </a>
+
+            <input type="hidden" value="{{ child.id }}">
+        </div>
+
+
+<!--      <a href="#" class="list-group-item list-group-item-action float-left">{{ child.name }}-->
+<!--          <i class="fa fa-trash icon-margin right"></i><i class="fa fa-edit icon-margin right"></i></a>-->
+  {% endfor %}
+
+    <input type="hidden" value="" name="child" id="child_id">
+
+</div>
+</form>
+</div>
+{% endblock %}

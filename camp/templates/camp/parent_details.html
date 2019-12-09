@@ -1,0 +1,46 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+<div class="topMargin">
+<h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Parent details</h3>
+<form role="form" method="post" class="styled topMargin">
+    {% csrf_token %}
+<!--    <div class="col-md-12">-->
+<!--        <h3 class="font-weight-bold pl-0 my-4">Parent Data</h3>-->
+<!--        <div class="form-group md-form">-->
+<!--            <label for="name" data-error="wrong" data-success="right">Name</label>-->
+<!--            <input id="name" type="text" name="name" required="required" class="form-control validate">-->
+<!--        </div>-->
+        <div class="form-group md-form">
+            <label for="address" data-error="wrong" data-success="right">Address</label>
+            <input id="address" type="text" class="form-control validate" name="address" value="{{ form.address.value|default_if_none:'' }}">
+        </div>
+        <div class="form-group md-form">
+            <label for="mobile_1" data-error="wrong" data-success="right">Mobile 1</label>
+            <input id="mobile_1" pattern="[0-9]{10}" type="tel" required="required" class="form-control validate" name="mobile_1" placeholder="0552443913" value="{{ form.mobile_1.value|default_if_none:'' }}">
+        </div>
+        <div class="form-group md-form mt-3">
+            <label for="mobile_2" data-error="wrong" data-success="right">Mobile 2</label>
+            <input id="mobile_2" pattern="[0-9]{10}" type="tel" class="form-control validate" name="mobile_2" placeholder="0552443913" value="{{ form.mobile_2.value|default_if_none:'' }}">
+        </div>
+
+        <div class="form-group md-form">
+            <label for="work_address" data-error="wrong" data-success="right">Work Address</label>
+            <input id="work_address" type="text" class="form-control validate" name="work_address" value="{{ form.work_address.value|default_if_none:'' }}">
+        </div>
+        <div class="form-group md-form">
+            <label for="work_mobile" data-error="wrong" data-success="right">Work Mobile</label>
+            <input id="work_mobile" pattern="[0-9]{10}" type="tel" class="form-control validate" name="work_mobile" placeholder="0552443913" value="{{ form.work_mobile.value|default_if_none:'' }}">
+        </div>
+        <div class="form-group md-form">
+            <label for="parent_email" data-error="wrong" data-success="right">Email</label>
+            <input id="parent_email" type="email" required="required" class="form-control validate" name="email" value="{{ form.email.value|default_if_none:'' }}">
+        </div>
+        <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left btn btn-outline-success right" id="pcancel" type="button">Cancel</button>
+        <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" id="psubmit" type="submit">Submit</button>
+        <br>
+        <br>
+        <br>
+</form>
+</div>
+{% endblock %}

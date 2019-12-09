@@ -1,0 +1,34 @@
+{% extends 'camp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="user_type_select">
+        <button type="button" class="btn btn-dark user_select" value="parent">I'm a parent</button>
+        <button type="button" class="btn btn-dark user_select" value="staff">I'm a staff</button>
+    </div>
+    <div id="su">
+    <form method="post" class="styled">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name != "is_parent" and field.name != "is_staff" %}
+
+                <label>
+                    <p class="label-txt">{{ field.label_tag }}</p><br>
+                    {% if field.name == "password1" or field.name == "password2" %}
+                        <input type="password" class="input" name="{{ field.name }}">
+                    {% else %}
+                        <input type="text" class="input" name="{{ field.name }}">
+                    {% endif %}
+                    <div class="line-box">
+                      <div class="line"></div>
+                    </div>
+                </label><br>
+            {% endif %}
+        {% endfor %}
+        <input type="hidden" id="user_type" name="user_type" value="">
+        <button type="submit">Sign up</button>
+    </form>
+    </div>
+
+{% endblock %}
+

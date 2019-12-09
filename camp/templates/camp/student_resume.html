@@ -1,0 +1,59 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+    {% if student %}
+
+
+        <div class="resume">
+
+            <table>
+                <tr>
+                    <td class="td1">
+                        <img src="/media/{{ student.picture }}" height="150px" width="150px">
+                    </td>
+                    <td class="td2" align="left">
+                        Name: {{ student.name }}<br>
+                        Gender: {{ student.gender }}<br>
+                        Camp: {{ student.camp }}<br>
+                        School: {{ student.school }}<br>
+                        Grade: {{ student.grade }}<br>
+                        Date of Birth: {{ student.dob }}<br>
+                        Mobile Number: {{ student.contact }}<br>
+                        Email: {{ student.email }}<br>
+                        Parent Name: {{ student.parent.user.username }} <br>
+                        Address: {{ student.parent.address }}<br>
+                        Parent Mobile 1: {{ student.parent.mobile_1 }}<br>
+                        Parent Mobile 2: {{ student.parent.mobile_2 }}<br>
+                        Work Address: {{ student.parent.work_address }}<br>
+                        Work Mobile: {{ student.parent.work_mobile }}<br>
+                        Parent Email: {{ student.parent.email }}<br>
+                        ID Card: <a href="/media/{{ student.id_card }}"><i class="fa fa-file-pdf-o"></i></a>
+                    </td>
+                </tr>
+            </table>
+
+            {% if type == 'staff' %}
+                <form method="post" action="{% url 'camp:download_resume' %}">
+                    {% csrf_token %}
+                    <div class="right right-space">
+                        <button type="submit" class="pull-right" name="pdf"><i class="fa fa-download"></i></button>
+                        <button type="submit" class="pull-right" name="print"><i class="fa fa-print"></i></button>
+                    </div>
+                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                </form>
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+    {% if type == 'parent' %}
+        <div class="outer">
+            <a href="{% url 'camp:view' %}" class="left-logo text-info view_list">View Children</a>
+        </div>
+    {% elif type == 'staff' %}
+        <div class="outer">
+            <a href="{% url 'camp:list' %}" class="left-logo text-info view_list">Back</a>
+        </div>
+    {% endif %}
+{% endblock %}

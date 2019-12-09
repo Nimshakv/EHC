@@ -1,0 +1,163 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+<div class="topMargin">
+<!--    <a href="{% url 'camp:home' %}" class="float-left text-info"> Go To Home </a>-->
+    {% if not messages %}
+    {% if child %}
+        <h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Edit Child Details</h3>
+    {% else %}
+        <h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Register your child</h3>
+    {% endif %}
+
+    <!-- Stepper -->
+    <div class="steps-form-2">
+        <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+            <div class="steps-step-2">
+                <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Select Camp"><i class="fa fa-book" aria-hidden="true"></i></a>
+            </div>
+            <div class="steps-step-2">
+                <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Student Personal Data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+            <div class="steps-step-2">
+                <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Student Picture"><i class="fa fa-photo" aria-hidden="true"></i></a>
+            </div>
+            <div class="steps-step-2">
+                <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Student ID"><i class="fa fa-id-card" aria-hidden="true"></i></a>
+            </div>
+            <div class="steps-step-2">
+                <a href="#step-5" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- First Step -->
+    <form role="form" method="post" enctype="multipart/form-data" class="styled">
+            {% csrf_token %}
+            {% if child %}
+                <input type="hidden" name="st_id" value="{{ child.id }}">
+            {% endif %}
+            <div class="paymentWrap row setup-content-2" id="step-1">
+                    <div><h3 class="font-weight-bold pl-0 my-4"><strong>Select Camp</strong></h3></div>
+                    <div class="btn-group paymentBtnGroup btn-group-justified col-md-12" data-toggle="buttons">
+
+                        <label class="btn paymentMethod active">
+                            <div class="method boxed">Samaliyah Summer camp</div>
+                            <input type="radio" name="camp" value="Samaliyah Summer camp" checked>
+                        </label>
+                        <label class="btn paymentMethod">
+                            <div class="method boxed">Samaliyah Spring Camp</div>
+                            <input type="radio" name="camp" value="Samaliyah Spring Camp">
+                        </label>
+                        <label class="btn paymentMethod">
+                            <div class="method boxed">Athuraya Camp</div>
+                            <input type="radio" name="camp" value="Athuraya Camp">
+                        </label>
+                         <label class="btn paymentMethod">
+                            <div class="method boxed">Ramadan Festival</div>
+                            <input type="radio" name="camp" value="Ramadan Festival">
+                        </label>
+
+                    </div>
+                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" type="button">Next</button>
+            </div>
+
+    <!-- Second Step -->
+        <div class="row setup-content-2" id="step-2">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Student Data</strong></h3>
+                <div class="form-group md-form">
+                    <label for="student_name" data-error="wrong" data-success="right">Name</label>
+                    <input id="student_name" type="text" name="name" required="required" class="form-control validate" value="{{ child.name }}">
+                </div>
+                <div class="form-group md-form">
+                    <label class="radio-inline customradio"><span class="radiotextsty">Male</span>
+                        <input type="radio" name="gender" value="male" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-inline customradio"><span class="radiotextsty">Female</span>
+                        <input type="radio" name="gender" value="female">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-inline customradio"><span class="radiotextsty">Others</span>
+                        <input type="radio" name="gender" value="others">
+                        <span class="checkmark"></span>
+                    </label>
+<!--                    <label class="radio-inline customradio"><input type="radio" name="optradio">Option 2</label>-->
+<!--                    <label class="radio-inline customradio"><input type="radio" name="optradio">Option 3</label>-->
+                </div>
+
+                <div class="form-group md-form mt-3">
+                    <label for="school" data-error="wrong" data-success="right">School</label>
+                    <input id="school" type="text" name="school" required="required" class="form-control validate" value="{{ child.school }}">
+                </div>
+                <div class="form-group md-form">
+                    <label for="grade" data-error="wrong" data-success="right">Grade</label>
+                    <input id="grade" type="text" required="required" class="form-control validate" name="grade" value="{{ child.grade }}">
+                </div>
+                <div class="form-group md-form mt-3">
+                    <label for="student_birthday" data-error="wrong" data-success="right">Date of Birth</label>
+                    <input id="student_birthday" type="date" required="required" class="form-control validate" name="dob" value="{{ child.dob }}">
+                </div>
+                <div class="form-group md-form">
+                    <label for="student_mobile" data-error="wrong" data-success="right">Mobile Number</label>
+                    <input id="student_mobile" pattern="[0-9]{10}" type="tel" required="required" class="form-control validate" name="contact" placeholder="0552443913" value="{{ child.contact }}">
+                </div>
+                <div class="form-group md-form">
+                    <label for="student_email" data-error="wrong" data-success="right">Email</label>
+                    <input id="student_email" type="email" required="required" class="form-control validate" name="email" value="{{ child.email }}">
+                </div>
+                <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left btn btn-outline-success right" type="button">Previous</button>
+                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" type="button">Next</button>
+            </div>
+        </div>
+
+        <!-- Third Step -->
+        <div class="row setup-content-2" id="step-3">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Upload Student Photo</strong></h3>
+                <div class="form-check">
+                    <div>
+                        {% if child %}
+                            <img src="/media/{{ child.picture }}" class="image prof_pic">
+                        {% else %}
+                            <img src="../static/images/dummy.png" class="image prof_pic">
+                        {% endif %}
+                    </div>
+                    <br>
+                    <input type="file" id="profile_image" name="picture" accept="image/x-png,image/jpeg" required="required">
+                </div>
+                <br><br>
+                <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left btn btn-outline-success right" type="button">Previous</button>
+                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" type="button">Next</button>
+            </div>
+        </div>
+
+        <div class="row setup-content-2" id="step-4">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Upload Student ID</strong></h3>
+                <div class="form-check">
+                    <div>
+                        <img src="../static/images/id.png" class="image">
+                    </div>
+                    <br>
+                    <input type="file" id="id_card" name="id_card" accept="application/pdf" required="required">
+                </div>
+                <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left btn btn-outline-success right" type="button">Previous</button>
+                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" type="button">Next</button>
+            </div>
+        </div>
+
+        <!-- Fifth Step -->
+        <div class="row setup-content-2" id="step-5">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold pl-0 my-4"><strong>Finish</strong></h3>
+                <h2 class="text-center font-weight-bold my-4">Registration completed!</h2>
+                <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left btn btn-outline-success right" type="button">Previous</button>
+                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right btn btn-outline-success right" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+{% endif %}
+</div>
+{% endblock %}

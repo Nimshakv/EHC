@@ -1,0 +1,59 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+<form method="post" class="topMargin">
+{% csrf_token %}
+
+{% if students == None %}
+<!--<a href="{% url 'camp:home' %}" class="float-left text-info"> Go To Home </a>-->
+<h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Select Camp</h3>
+<form method="post">
+{% csrf_token %}
+    <div class="camp_select">
+        <button type="submit" class="btn btn-success camp_btn">Samaliyah Summer camp</button>
+        <button type="submit" class="btn btn-success camp_btn">Samaliyah Spring Camp</button>
+        <button type="submit" class="btn btn-success camp_btn">Athuraya Camp</button>
+        <button type="submit" class="btn btn-success camp_btn">Ramadan Festival</button>
+        <input type="hidden" value="" name="camp">
+    </div>
+</form>
+
+{% else %}
+    <h3 class="text-center font-bold pt-4 pb-5 mb-5 text-dark">Students list</h3>
+
+    <div class="list-group students">
+        <form method="post">
+            <input type="hidden" value="{{ camp|default_if_none:'' }}" name="camp">
+            <span>
+                <button type="submit" class="pull-right download" name="print"><i class="fa fa-print"></i></button>
+                <button type="submit" class="pull-right download" name="pdf"><i class="fa fa-download"></i></button>
+            </span>
+        </form>
+      {% for st in students %}
+
+        <a href="/student?id={{ st.id }}">
+                    <p class="list-group-item list-group-item-action list-group-item-success">{{ st.name }}</p>
+            </a>
+    <!--      <a href="#" class="list-group-item list-group-item-action float-left">{{ child.name }}-->
+    <!--          <i class="fa fa-trash icon-margin right"></i><i class="fa fa-edit icon-margin right"></i></a>-->
+      {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+
+</form>
+
+{% if all_list %}
+       <form method="post" action="{% url 'camp:download_all' %}">
+           {% csrf_token %}
+           <span class="right right-space">
+                <button type="submit" class="" name="pdf"><i class="fa fa-download"></i> Download All <i class="fa fa-file-pdf-o"></i></button>
+                <button type="submit" class="" name="print"><i class="fa fa-print"></i> Print All</button>
+            </span>
+       </form>
+
+{% endif %}
+{% endblock %}

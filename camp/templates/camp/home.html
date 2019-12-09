@@ -1,0 +1,11 @@
+{% extends 'camp/pbase.html' %}
+
+{% block content %}
+    <div>
+        <ul class="parent_menu">
+            <li><a href="{% url 'camp:parent_details' %}">Add parent details</a></li>
+            <li><a href="{% url 'camp:register' %}">Register your child</a></li>
+            <li><a href="{% url 'camp:view' %}">View Children</a></li>
+        </ul>
+    </div>
+{% endblock %}

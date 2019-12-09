@@ -1,0 +1,181 @@
+
+form.styled {
+  width: 60%;
+  margin: 60px auto;
+  background: #efefef;
+  padding: 60px 120px 80px 120px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+}
+label {
+  display: block;
+  position: relative;
+  margin: 40px 0px;
+}
+.label-txt {
+  position: absolute;
+  top: -1.6em;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: .8em;
+  letter-spacing: 1px;
+  color: rgb(120,120,120);
+  transition: ease .3s;
+}
+.input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.line-box {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #BCBCBC;
+}
+
+.line {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8BC34A;
+  transition: ease .6s;
+}
+
+.input:focus + .line-box .line {
+  width: 100%;
+}
+
+.label-active {
+  top: -3em;
+}
+
+button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgb(220,220,220);
+  font-weight: bold;
+  color: rgb(120,120,120);
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: ease .3s;
+}
+
+button:hover {
+  background: #8BC34A;
+  color: #ffffff;
+}
+
+div#su, div#lg {
+    display: none;
+}
+
+.center {
+    display:inline-block;
+    margin: 0 auto;
+}
+
+.container {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.right {
+    float: right;
+}
+
+.user_type_select{
+    margin-top: 25%;
+    height: 150px;
+}
+
+.user_type_select button{
+    height: 100%;
+    width: 15%;
+}
+
+.camp_select{
+    height: 150px;
+}
+
+.camp_select button {
+    height: 100%;
+    width: 15%;
+    font-family: auto;
+}
+
+.download {
+    width: 8%;
+    margin: 2px;
+    float: right;
+}
+
+.logo {
+    height: 20%;
+    width: 40%;
+}
+
+.left-logo {
+    margin-left: 25px;
+}
+
+.logo-contain {
+    width: 100px;
+}
+
+.right-space {
+    margin: 2% !important;
+}
+
+.right-space button {
+    margin: 1px;
+    float: left;
+}
+
+.small_icon {
+    height: 3%;
+    width: 3%;
+}
+
+.p-width {
+    width: 85.5%;
+    border-radius: none !important;
+}
+
+.sp-child {
+    width: 14%;
+}
+
+.sp-child button{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: none !important;
+}
+
+.logos {
+    width: 100%;
+    margin: auto;
+}
+
+.second-logo {
+    width: 200px;
+    float: left;
+}
+
+.third-logo {
+    float: right;
+    margin-right: 15px;
+}
+
+.topMargin {
+    margin-top: 13%;
+}
+
